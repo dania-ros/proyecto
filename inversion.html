@@ -1,0 +1,145 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Plan de Inversión</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Rubik', sans-serif;
+      margin: 0;
+      background: linear-gradient(to right, #dff9fb, #f0f9ff);
+      color: #2d3436;
+    }
+
+    header {
+      background-color: #6c5ce7;
+      color: white;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    main {
+      max-width: 700px;
+      margin: 30px auto;
+      background: white;
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease;
+    }
+
+    h2 {
+      color: #6c5ce7;
+      margin-top: 0;
+    }
+
+    .seccion {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .opciones {
+      background-color: #e0f7fa;
+      border-left: 5px solid #00cec9;
+    }
+
+    .negocio {
+      background-color: #ffeaa7;
+      border-left: 5px solid #fdcb6e;
+    }
+
+    .mensaje {
+      background-color: #fab1a0;
+      font-weight: bold;
+      text-align: center;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 25px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📈 Tu Guía de Inversiones</h1>
+</header>
+
+<main>
+  <h2 id="saludo">Hola, inversionista</h2>
+  <p>Capital disponible: <strong id="capital">Bs 0.00</strong></p>
+
+  <div class="seccion opciones" id="opcionesInversion">
+    <h3>💡 Opciones de inversión para ti:</h3>
+    <ul id="listaInversiones"></ul>
+  </div>
+
+  <div class="seccion negocio" id="seccionNegocio" style="display: none;">
+    <h3>🛍️ ¿Puedes abrir un pequeño negocio?</h3>
+    <p id="infoNegocio"></p>
+  </div>
+
+  <div class="mensaje" id="mensajeFinal">
+    💬 Consejo: Invierte solo lo que puedas mantener sin necesitarlo a corto plazo.
+  </div>
+</main>
+
+<script>
+  const nombre = localStorage.getItem("nombre") || "Usuario";
+  const apellido = localStorage.getItem("apellido") || "";
+  const dinero = parseFloat(localStorage.getItem("dinero")) || 0;
+
+  const saludo = document.getElementById("saludo");
+  const capital = document.getElementById("capital");
+  const lista = document.getElementById("listaInversiones");
+  const infoNegocio = document.getElementById("infoNegocio");
+
+  saludo.textContent = `Hola ${nombre} ${apellido}, aquí tienes tus opciones`;
+  capital.textContent = `Bs ${dinero.toFixed(2)}`;
+
+  const inversiones = [
+    { nombre: "📊 Plazo fijo en banco", minimo: 100, descripcion: "Bajo riesgo y bajo rendimiento (3% - 5% anual)" },
+    { nombre: "📉 Criptomonedas", minimo: 200, descripcion: "Riesgo alto, posibles ganancias rápidas (BTC, ETH...)" },
+    { nombre: "📦 Venta por catálogo", minimo: 250, descripcion: "Cosméticos, ropa, hogar: margen de ganancia 20%-40%" },
+    { nombre: "📱 Marketing de redes sociales", minimo: 400, descripcion: "Promocionar productos/servicios y generar ingresos" },
+    { nombre: "🖥️ Curso en línea o habilidad nueva", minimo: 150, descripcion: "Invertir en ti mismo mejora tus oportunidades" }
+  ];
+
+  inversiones.forEach(inv => {
+    if (dinero >= inv.minimo) {
+      const li = document.createElement("li");
+      li.innerHTML = `<strong>${inv.nombre}</strong>: ${inv.descripcion} <em>(mínimo Bs ${inv.minimo})</em>`;
+      lista.appendChild(li);
+    }
+  });
+
+  // Evaluar si se puede abrir un negocio pequeño
+  if (dinero >= 600) {
+    document.getElementById("seccionNegocio").style.display = "block";
+    infoNegocio.innerHTML = `
+      ✅ Con Bs ${dinero.toFixed(2)} podrías iniciar:
+      <ul>
+        <li>🍪 Venta de galletas / snacks caseros</li>
+        <li>📦 Negocio de reventa por internet</li>
+        <li>🎨 Manualidades y arte para eventos</li>
+        <li>💇‍♂️ Servicios móviles (peluquería, maquillaje, etc.)</li>
+      </ul>
+      ¡Tú eliges cómo emprender! 🚀
+    `;
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ingreso de Usuario</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Rubik', sans-serif;
+      background: linear-gradient(to bottom right, #dff9fb, #c7ecee);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .formulario {
+      background-color: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      animation: fadeIn 1s ease;
+    }
+
+    h2 {
+      text-align: center;
+      color: #00b894;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #dcdde1;
+      border-radius: 10px;
+      font-size: 1em;
+    }
+
+    .opciones {
+      margin-top: 10px;
+    }
+
+    .opciones label {
+      font-weight: normal;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #0984e3;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #74b9ff;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="formulario">
+    <h2>🔐 Ingresar a tu Plan Financiero</h2>
+    <form id="registroForm">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required>
+
+      <label for="apellido">Apellido:</label>
+      <input type="text" id="apellido" required>
+
+      <label for="dinero">Cantidad de dinero que tienes (Bs):</label>
+      <input type="number" id="dinero" required min="0">
+
+      <div class="opciones">
+        <label>¿Qué deseas hacer?</label>
+        <input type="radio" id="ahorrar" name="accion" value="ahorrar" required>
+        <label for="ahorrar">💰 Ahorrar Dinero</label>
+
+        <input type="radio" id="invertir" name="accion" value="invertir">
+        <label for="invertir">📈 Invertir Dinero</label>
+      </div>
+
+      <label for="clave">Contraseña:</label>
+      <input type="password" id="clave" required>
+
+      <button type="submit">Continuar</button>
+    </form>
+  </div>
+  <script>
+  document.getElementById("registroForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const nombre = document.getElementById("nombre").value;
+    const apellido = document.getElementById("apellido").value;
+    const dinero = parseFloat(document.getElementById("dinero").value);
+    const clave = document.getElementById("clave").value;
+    const accion = document.querySelector('input[name="accion"]:checked').value;
+
+    // Guardamos en localStorage para usarlo en la siguiente página
+    localStorage.setItem("nombre", nombre);
+    localStorage.setItem("apellido", apellido);
+    localStorage.setItem("dinero", dinero);
+    localStorage.setItem("accion", accion);
+
+    // Redirigir a ahorro o inversión según la opción
+    if (accion === "ahorrar") {
+      window.location.href = "ahorro.html";
+    } else {
+      window.location.href = "inversion.html";
+    }
+  });
+</script>
+
+
+</body>
+</html>

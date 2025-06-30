@@ -1,0 +1,157 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>¿Por qué Suben los Precios?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Rubik', sans-serif;
+      background: linear-gradient(to bottom right, #f0f9ff, #e0f7fa);
+      color: #2c3e50;
+    }
+
+    header {
+      background-color: #00cec9;
+      padding: 30px 20px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    main {
+      padding: 40px 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .seccion {
+      background-color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .seccion:nth-child(1) {
+      animation-delay: 0.3s;
+    }
+
+    .seccion:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+
+    .seccion:nth-child(3) {
+      animation-delay: 0.9s;
+    }
+
+    .seccion:nth-child(4) {
+      animation-delay: 1.2s;
+    }
+
+    h2 {
+      color: #0984e3;
+      margin-top: 0;
+    }
+
+    p {
+      line-height: 1.6em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #dfe6e9;
+      color: #636e72;
+      font-size: 0.9em;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        transform: translateY(-30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.8em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📈 ¿Por Qué Suben los Precios?</h1>
+</header>
+
+<main>
+  <div class="seccion">
+    <h2>💡 ¿Qué es la inflación?</h2>
+    <p>La inflación es el aumento generalizado y sostenido de los precios de bienes y servicios en un país durante un período de tiempo. Esto hace que con la misma cantidad de dinero puedas comprar menos cosas.</p>
+  </div>
+
+  <div class="seccion">
+    <h2>🔥 Causas Comunes del Aumento de Precios</h2>
+    <p>Durante una crisis económica o inflación, los precios suben por varios factores:</p>
+    <ul>
+      <li><strong>Aumento del costo de producción:</strong> materia prima, energía o transporte más caros.</li>
+      <li><strong>Devaluación de la moneda:</strong> el dinero pierde valor frente a otras monedas.</li>
+      <li><strong>Mayor demanda y menor oferta:</strong> escasez de productos eleva los precios.</li>
+      <li><strong>Políticas monetarias:</strong> impresión excesiva de dinero por parte del Estado.</li>
+    </ul>
+  </div>
+
+  <div class="seccion">
+    <h2>🧠 ¿Qué siente la gente?</h2>
+    <p>Las personas notan que su salario alcanza para menos cosas, se endeudan más o dejan de comprar productos no esenciales. El costo de vida se vuelve más alto y la pobreza puede aumentar.</p>
+  </div>
+
+  <div class="seccion">
+    <h2>📉 ¿Cómo se puede controlar?</h2>
+    <p>Los gobiernos y bancos centrales intentan controlar la inflación con:</p>
+    <ul>
+      <li><strong>Suba de tasas de interés</strong> para frenar el consumo.</li>
+      <li><strong>Control de precios</strong> en productos básicos.</li>
+      <li><strong>Políticas fiscales</strong> más responsables.</li>
+      <li><strong>Importaciones</strong> para equilibrar la oferta.</li>
+    </ul>
+  </div>
+</main>
+
+<footer>
+  Educación Financiera • Explicación básica adaptada a estudiantes | 2025
+</footer>
+
+</body>
+</html>

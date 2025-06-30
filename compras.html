@@ -1,0 +1,177 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lista de Compras en Bolivia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #f1f2f6, #dff9fb);
+      color: #2d3436;
+    }
+
+    header {
+      background: #00a8ff;
+      color: white;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    main {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .producto {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: aparecer 1s ease;
+    }
+
+    .producto:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .producto h2 {
+      font-size: 1.2em;
+      color: #0984e3;
+      margin: 0 0 10px 0;
+    }
+
+    .producto p {
+      margin: 0 0 8px;
+      font-size: 0.95em;
+      color: #636e72;
+    }
+
+    .precio {
+      font-weight: bold;
+      color: #27ae60;
+      font-size: 1.1em;
+      margin-top: 8px;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #dcdde1;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🛍️ Cosas que Puedes Comprar en Bolivia (2025)</h1>
+</header>
+
+<main>
+  <div class="producto">
+    <h2>Pan </h2>
+    <p>la unidad de pan.</p>
+    <div class="precio">Bs 1</div>
+  </div>
+
+  <div class="producto">
+    <h2>Arroz (1 kg)</h2>
+    <p>Arroz grano largo nacional.</p>
+    <div class="precio">Bs 20</div>
+  </div>
+
+  <div class="producto">
+    <h2>Leche (litro)</h2>
+    <p>Leche entera en bolsa.</p>
+    <div class="precio">Bs 8 a 9</div>
+  </div>
+
+  <div class="producto">
+    <h2>Pollo (1 kg)</h2>
+    <p>Pollo fresco del mercado.</p>
+    <div class="precio">Bs 25</div>
+  </div>
+
+  <div class="producto">
+    <h2>Gas doméstico (garrafa)</h2>
+    <p>Garrafa de 10kg subvencionada.</p>
+    <div class="precio">Bs 30</div>
+  </div>
+
+  <div class="producto">
+    <h2>Internet hogar (mensual)</h2>
+    <p>Servicio básico 30 Mbps.</p>
+    <div class="precio">Bs 250</div>
+  </div>
+
+  <div class="producto">
+    <h2>Pasaje urbano</h2>
+    <p>Pasaje minibús en ciudad.</p>
+    <div class="precio">Bs 2.50</div>
+  </div>
+
+  <div class="producto">
+    <h2>Refresco embotellado</h2>
+    <p>Bebida 500ml en botella.</p>
+    <div class="precio">Bs 8</div>
+  </div>
+
+  <div class="producto">
+    <h2>Aceite</h2>
+    <p>1L. de aceite en mercado</p>
+    <div class="precio">Bs 20</div>
+  </div>
+
+  <div class="producto">
+    <h2>Azuca</h2>
+    <p>1Kg. en el mercado</p>
+    <div class="precio">Bs 20</div>
+  </div>
+
+  <div class="producto">
+    <h2>Carne de res</h2>
+    <p>1Kg. en los mercados</p>
+    <div class="precio">Bs 50</div>
+  </div>
+
+  <div class="producto">
+    <h2>Harina</h2>
+    <p>1Kg. en mercado</p>
+    <div class="precio">Bs 20</div>
+  </div>
+</main>
+
+<footer>
+  Precios aproximados actualizados a junio 2025, subieron un 50% algunos alimentos.
+</footer>
+
+</body>
+</html>
