@@ -1,0 +1,233 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Ahorro Inteligente</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom right, #e0f7fa, #fef9f8);
+      color: #2d3436;
+    }
+
+    header {
+      background-color: #00b894;
+      color: white;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    main {
+      max-width: 700px;
+      margin: 30px auto;
+      background: white;
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease;
+    }
+
+    h2 {
+      color: #0984e3;
+      margin-top: 0;
+    }
+
+    input[type="number"] {
+      padding: 12px;
+      width: 100%;
+      margin: 12px 0;
+      border-radius: 10px;
+      border: 1.8px solid #ccc;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 12px;
+      width: 100%;
+      background-color: #00cec9;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #55efc4;
+    }
+
+    .estado, .proyeccion, .ideas, .consejo {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .estado {
+      background: #f1f2f6;
+      border-left: 5px solid #00cec9;
+    }
+
+    .barra-container {
+      background-color: #dfe6e9;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .barra-progreso {
+      height: 20px;
+      width: 0%;
+      background-color: #00b894;
+      transition: width 0.8s ease;
+    }
+
+    .proyeccion {
+      background-color: #e0f7fa;
+      border-left: 5px solid #74b9ff;
+    }
+
+    .ideas {
+      background-color: #ffeaa7;
+      border-left: 5px solid #fdcb6e;
+    }
+
+    .ideas ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .consejo {
+      background-color: #fab1a0;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📊 Tu Plan de Ahorro Inteligente</h1>
+</header>
+
+<main>
+  <h2 id="saludo">Hola, Usuario</h2>
+  <p>Dinero disponible: <strong id="totalDinero">Bs 0.00</strong></p>
+
+  <label for="montoAhorro">¿Cuánto quieres ahorrar hoy?</label>
+  <input type="number" id="montoAhorro" placeholder="Ej: 50 Bs" />
+
+  <button onclick="registrarAhorro()">💾 Registrar Ahorro</button>
+
+  <div class="estado" id="estadoAhorro">📝 Aún no has comenzado a ahorrar.</div>
+
+  <div class="barra-container">
+    <div class="barra-progreso" id="barraProgreso"></div>
+  </div>
+
+  <div class="proyeccion" id="proyeccion" style="display:none;">
+    <h3>📅 Si ahorras esta cantidad todos los días:</h3>
+    <p><strong>En 30 días habrás ahorrado: Bs <span id="ahorroMes"></span></strong></p>
+  </div>
+
+  <div class="ideas" id="ideasCompras" style="display:none;">
+    <h3>🛍️ Con ese ahorro podrías comprar:</h3>
+    <ul id="listaCompras">
+      <!-- se llena con JS -->
+    </ul>
+  </div>
+
+  <div class="consejo" id="consejoFinal">
+    💡 Consejo: El ahorro es libertad futura.
+  </div>
+</main>
+
+<script>
+  const nombre = localStorage.getItem("nombre") || "Usuario";
+  const apellido = localStorage.getItem("apellido") || "";
+  const dineroTotal = parseFloat(localStorage.getItem("dinero")) || 0;
+
+  let ahorrado = 0;
+
+  const consejos = [
+    "💡 El ahorro es libertad futura.",
+    "📅 Un poco cada día se vuelve mucho en un mes.",
+    "🔁 La constancia vale más que la cantidad.",
+    "💰 Guarda primero, gasta después.",
+    "🎯 Ahorrar te acerca a tus metas."
+  ];
+
+  const ideasCompras = [
+    { item: "Audífonos Bluetooth", precio: 150 },
+    { item: "Ropa nueva (pantalón y polera)", precio: 200 },
+    { item: "Bicicleta usada", precio: 600 },
+    { item: "Celular económico", precio: 900 },
+    { item: "Una salida especial", precio: 120 },
+    { item: "Herramientas básicas", precio: 250 }
+  ];
+
+  document.getElementById("saludo").textContent = `Hola ${nombre} ${apellido}, este es tu plan de ahorro`;
+  document.getElementById("totalDinero").textContent = `Bs ${dineroTotal.toFixed(2)}`;
+
+  function registrarAhorro() {
+    const monto = parseFloat(document.getElementById("montoAhorro").value);
+    if (isNaN(monto) || monto <= 0) {
+      alert("Por favor, ingresa un monto válido.");
+      return;
+    }
+
+    if (ahorrado + monto > dineroTotal) {
+      alert("No puedes ahorrar más de lo que tienes.");
+      return;
+    }
+
+    ahorrado += monto;
+    const porcentaje = ((ahorrado / dineroTotal) * 100).toFixed(2);
+
+    // Estado del ahorro
+    document.getElementById("estadoAhorro").innerHTML = `
+      ✅ Has ahorrado <strong>Bs ${ahorrado.toFixed(2)}</strong><br>
+      Eso es un <strong>${porcentaje}%</strong> de tu dinero disponible.<br>
+      ${porcentaje >= 100 ? "🎉 ¡Meta completada!" : "💪 Sigue así, vas por buen camino."}
+    `;
+
+    document.getElementById("barraProgreso").style.width = `${porcentaje}%`;
+
+    // Proyección mensual
+    const ahorroMensual = monto * 30;
+    document.getElementById("proyeccion").style.display = "block";
+    document.getElementById("ahorroMes").textContent = ahorroMensual.toFixed(2);
+
+    // Ideas de compras
+    const lista = document.getElementById("listaCompras");
+    lista.innerHTML = ""; // limpiar
+    document.getElementById("ideasCompras").style.display = "block";
+    ideasCompras.forEach(obj => {
+      if (ahorroMensual >= obj.precio) {
+        const li = document.createElement("li");
+        li.textContent = `✅ ${obj.item} (aprox. Bs ${obj.precio})`;
+        lista.appendChild(li);
+      }
+    });
+
+    // Consejo motivador
+    const random = consejos[Math.floor(Math.random() * consejos.length)];
+    document.getElementById("consejoFinal").textContent = random;
+
+    document.getElementById("montoAhorro").value = "";
+  }
+</script>
+
+</body>
+</html>
